@@ -14,6 +14,16 @@ class PostalAddress {
       String _district, String _city, String _state)
       : this(_code, _place, _complement, _district, _city, _state, 'Brasil');
 
+  PostalAddress.fromJson(Map<String, dynamic> parsedJson)
+      : this(
+            parsedJson['cep'],
+            parsedJson['logradouro'],
+            parsedJson['complemento'],
+            parsedJson['bairro'],
+            parsedJson['localidade'],
+            parsedJson['uf'],
+            'Brasil');
+
   String get country => _country;
 
   String get state => _state;

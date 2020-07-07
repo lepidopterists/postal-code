@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^0.1.3
 
 dev_dependencies:
+  convert:
+  http:
   test:
   flutter_test:
     sdk: flutter

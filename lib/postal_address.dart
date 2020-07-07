@@ -10,6 +10,10 @@ class PostalAddress {
   PostalAddress(this._code, this._place, this._complement, this._district,
       this._city, this._state, this._country);
 
+  PostalAddress.inBrazil(String _code, String _place, String _complement,
+      String _district, String _city, String _state)
+      : this(_code, _place, _complement, _district, _city, _state, 'Brasil');
+
   String get country => _country;
 
   String get state => _state;

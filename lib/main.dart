@@ -46,23 +46,17 @@ class AddressModel extends ChangeNotifier {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  //PostalAddressProvider _provider = PostalAddressProvider();
-  //PostalAddress _address;
   TextEditingController _controller = TextEditingController();
 
   void _update() async {
     print('_update');
     print(_controller.text);
     var model = Provider.of<AddressModel>(context, listen:false);
-
     model.update2(_controller.text);
   }
 
   @override
   Widget build(BuildContext context) {
-    //var model = Provider.of<AddressModel>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

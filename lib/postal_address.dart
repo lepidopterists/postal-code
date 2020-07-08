@@ -37,4 +37,9 @@ class PostalAddress {
   String get place => _place;
 
   String get code => _code;
+
+  @override
+  String toString() {
+    return 'PostalAddress{_code: $_code, _place: $_place, _complement: $_complement, _district: $_district, _city: $_city, _state: $_state, _country: $_country}';
+  }
 }

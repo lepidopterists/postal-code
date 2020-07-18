@@ -5,11 +5,18 @@ import 'package:postalcode/postal_address_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-      ChangeNotifierProvider(
-      create: (context) => AddressModel(),
-      child: MyApp())
-  );
+  runApp(ChangeNotifierProvider(
+      create: (context) => AddressModel(), child: MyApp()));
+}
+
+class AddressModel extends ChangeNotifier {
+  PostalAddressProvider _provider = PostalAddressProvider();
+
+  PostalAddress address;
+  void update2(String code) async {
+    address = await _provider.fetchPostalAddress(code);
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -35,23 +42,13 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class AddressModel extends ChangeNotifier {
-  PostalAddressProvider _provider = PostalAddressProvider();
-
-  PostalAddress address;
-  void update2(String code) async {
-    address = await _provider.fetchPostalAddress(code);
-    notifyListeners();
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _controller = TextEditingController();
 
   void _update() async {
     print('_update');
     print(_controller.text);
-    var model = Provider.of<AddressModel>(context, listen:false);
+    var model = Provider.of<AddressModel>(context, listen: false);
     model.update2(_controller.text);
   }
 

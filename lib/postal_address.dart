@@ -2,6 +2,9 @@
 // the AUTHORS file for details. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
+/**
+ *
+ */
 class PostalAddress {
   String _code;
   String _place;
@@ -11,13 +14,22 @@ class PostalAddress {
   String _state;
   String _country;
 
+  /**
+   *
+   */
   PostalAddress(this._code, this._place, this._complement, this._district,
       this._city, this._state, this._country);
 
+  /**
+   *
+   */
   PostalAddress.inBrazil(String _code, String _place, String _complement,
       String _district, String _city, String _state)
       : this(_code, _place, _complement, _district, _city, _state, 'Brasil');
 
+  /**
+   *
+   */
   PostalAddress.fromJson(Map<String, dynamic> parsedJson)
       : this(
             parsedJson['cep'],

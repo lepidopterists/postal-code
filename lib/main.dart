@@ -3,16 +3,23 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+
 import 'package:postalcode/postal_address.dart';
 import 'package:postalcode/postal_address_provider.dart';
 
 import 'package:provider/provider.dart';
 
+/**
+ *
+ */
 void main() {
   runApp(ChangeNotifierProvider(
       create: (context) => AddressModel(), child: MyApp()));
 }
 
+/**
+ *
+ */
 class AddressModel extends ChangeNotifier {
   PostalAddressProvider _provider = PostalAddressProvider();
 
@@ -23,7 +30,14 @@ class AddressModel extends ChangeNotifier {
   }
 }
 
+/**
+ *
+ */
 class MyApp extends StatelessWidget {
+
+  /**
+   *
+   */
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,18 +51,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/**
+ *
+ */
 class MyHomePage extends StatefulWidget {
+
+  /**
+   *
+   */
   MyHomePage({Key key, this.title}) : super(key: key);
 
+  /**
+   *
+   */
   final String title;
 
+  /**
+   *
+   */
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+/**
+ *
+ */
 class _MyHomePageState extends State<MyHomePage> {
+
+  /**
+   *
+   */
   TextEditingController _controller = TextEditingController();
 
+  /**
+   *
+   */
   void _update() async {
     print('_update');
     print(_controller.text);
@@ -56,6 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
     model.update2(_controller.text);
   }
 
+  /**
+   *
+   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,19 +103,70 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _controller,
-            ),
-            Text(
-              'Endereço:',
-            ),
-            Consumer<AddressModel>(builder: (context, model, child) {
-              return Text('${model.address}');
-            }),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                controller: _controller,
+              ),
+              Text(
+                'Endereço:',
+              ),
+              Consumer<AddressModel>(builder: (context, model, child) {
+
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.place),
+                          Text(model.address == null
+                              ? ""
+                              : "${model.address.place}"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.my_location),
+                          Text(model.address == null
+                              ? ""
+                              : "${model.address.district}"),
+                        ],
+                      ),                    Row(
+                        children: [
+                          Icon(Icons.location_city),
+                          Text(model.address == null
+                              ? ""
+                              : "${model.address.city}"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.flag),
+                          Text(model.address == null
+                              ? ""
+                              : "${model.address.state}"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.outlined_flag),
+                          Text(model.address == null
+                              ? ""
+                              : "${model.address.country}"),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

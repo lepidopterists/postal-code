@@ -2,8 +2,9 @@
 // the AUTHORS file for details. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-import 'package:postalcode/postal_address_provider.dart';
 import 'package:test/test.dart';
+
+import 'package:postalcode/postal_address_provider.dart';
 import 'package:postalcode/postal_address.dart';
 
 void main() {

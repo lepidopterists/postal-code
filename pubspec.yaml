@@ -34,6 +34,7 @@ dev_dependencies:
   convert:
   http:
   test:
+  mockito:
   flutter_test:
     sdk: flutter
 

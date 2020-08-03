@@ -34,7 +34,6 @@ class AddressModel extends ChangeNotifier {
  *
  */
 class MyApp extends StatelessWidget {
-
   /**
    *
    */
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
  *
  */
 class MyHomePage extends StatefulWidget {
-
   /**
    *
    */
@@ -77,7 +75,6 @@ class MyHomePage extends StatefulWidget {
  *
  */
 class _MyHomePageState extends State<MyHomePage> {
-
   /**
    *
    */
@@ -109,13 +106,14 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextField(
+                decoration: InputDecoration(
+                    labelText: 'CEP',
+                    hintText: 'Código postal',
+                    icon: Icon(Icons.mail)),
                 controller: _controller,
-              ),
-              Text(
-                'Endereço:',
+                key: ValueKey('field_CEP'),
               ),
               Consumer<AddressModel>(builder: (context, model, child) {
-
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -137,7 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               ? ""
                               : "${model.address.district}"),
                         ],
-                      ),                    Row(
+                      ),
+                      Row(
                         children: [
                           Icon(Icons.location_city),
                           Text(model.address == null
@@ -170,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: ValueKey('button_Find'),
         onPressed: _update,
         tooltip: 'Consultar',
         child: Icon(Icons.location_city),

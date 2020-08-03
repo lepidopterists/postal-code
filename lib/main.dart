@@ -21,9 +21,29 @@ void main() {
  *
  */
 class AddressModel extends ChangeNotifier {
+  /**
+   *
+   */
   PostalAddressProvider _provider = PostalAddressProvider();
 
+  /**
+   *
+   */
   PostalAddress address;
+
+  /**
+   *
+   */
+  AddressModel.withProvider(this._provider);
+
+  /**
+   *
+   */
+  AddressModel();
+
+  /**
+   *
+   */
   void update2(String code) async {
     address = await _provider.fetchPostalAddress(code);
     notifyListeners();
